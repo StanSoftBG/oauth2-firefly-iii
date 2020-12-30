@@ -18,7 +18,7 @@ class FireflyIIITest extends TestCase
      */
     protected $provider;
 
-    protected function setUp()
+    protected function setUp() : void
     {
     	try {
 			$this->provider = new FireflyIII([
@@ -32,7 +32,7 @@ class FireflyIIITest extends TestCase
     		exit;
 		}
     }
-    public function tearDown()
+    public function tearDown() : void
     {
         Mockery::close();
         parent::tearDown();
@@ -113,7 +113,7 @@ class FireflyIIITest extends TestCase
         $resourceOwner = $mockProvider->getResourceOwner(new AccessToken(['access_token' => '123']));
         $this->assertInstanceOf(FireflyIIIResourceOwner::class, $resourceOwner);
         $this->assertEquals('1', $resourceOwner->getId());
-        $this->assertInternalType('array', $resourceOwner->toArray());
+        $this->assertIsArray($resourceOwner->toArray());
     }
 
     /**
