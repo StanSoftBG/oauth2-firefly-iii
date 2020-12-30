@@ -7,11 +7,11 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use League\OAuth2\Client\Token\AccessToken;
 use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use StanSoft\OAuth2\Client\Provider\FireflyIII;
 use StanSoft\OAuth2\Client\Provider\FireflyIIIResourceOwner;
 
-class FireflyIIITest extends PHPUnit_Framework_TestCase
+class FireflyIIITest extends TestCase
 {
     /**
      * @var FireflyIII
@@ -136,12 +136,13 @@ class FireflyIIITest extends PHPUnit_Framework_TestCase
      */
     public function testGetResponseNoException()
     {
-        $this->setExpectedExceptionFromAnnotation();
         $mockProvider = Mockery::mock('StanSoft\OAuth2\Client\Provider\FireflyIII')
             ->shouldAllowMockingProtectedMethods()
             ->shouldDeferMissing()
             ->shouldReceive(['getResponse' => new Response(200, [], json_encode(['foo' => 'bar']))])
             ->getMock();
         $mockProvider->getParsedResponse(new Request('GET', '/', [], '/'));
+        // should not trigger exceptions so the next assert will succeed
+		$this->assertEquals(1, 1);
     }
 }

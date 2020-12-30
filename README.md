@@ -1,5 +1,5 @@
 # Firefly-III Provider for OAuth 2.0 Client
-[![Build Status](https://travis-ci.com/stratoss/oauth2-firefly-iii.svg?branch=master)](https://travis-ci.com/stratoss/oauth2-firefly-iii)
+[![Build Status](https://travis-ci.com/StanSoftBG/oauth2-firefly-iii.svg?branch=master)](https://travis-ci.com/StanSoftBG/oauth2-firefly-iii)
 
 Provides Firefly-III OAuth 2.0 support as an implementation of PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client)
 
