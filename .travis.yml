@@ -12,5 +12,6 @@ cache:
     - $HOME/.composer/cache
 before_script:
   - composer install --prefer-source --no-interaction
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "5." ]]; then composer require phpunit/phpunit ^5 -W; fi
 script:
   - vendor/bin/phpunit
