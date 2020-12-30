@@ -1,5 +1,5 @@
 {
-    "name" : "StanSoftBG/oauth2-firefly-iii",
+    "name" : "stansoft/oauth2-firefly-iii",
     "description": "Firefly-III OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
     "keywords": [
         "oauth",
