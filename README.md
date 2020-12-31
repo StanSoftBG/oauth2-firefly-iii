@@ -3,6 +3,12 @@
 
 Provides Firefly-III OAuth 2.0 support as an implementation of PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client)
 
+## Covered APIs
+- About 
+- Accounts
+- Tags
+- Transactions
+
 ## Installation
 
 To install, use composer:
