@@ -113,7 +113,7 @@ class FireflyIIITest extends TestCase
         $resourceOwner = $mockProvider->getResourceOwner(new AccessToken(['access_token' => '123']));
         $this->assertInstanceOf(FireflyIIIResourceOwner::class, $resourceOwner);
         $this->assertEquals('1', $resourceOwner->getId());
-        $this->assertInternalType('array', $resourceOwner->toArray());
+        $this->assertIsArray($resourceOwner->toArray());
     }
 
     /**
