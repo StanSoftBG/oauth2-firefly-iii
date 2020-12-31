@@ -18,7 +18,7 @@ class FireflyIIITest extends TestCase
      */
     protected $provider;
 
-    protected function setUp()
+    protected function setUp() : void
     {
     	try {
 			$this->provider = new FireflyIII([
@@ -32,7 +32,7 @@ class FireflyIIITest extends TestCase
     		exit;
 		}
     }
-    public function tearDown()
+    public function tearDown() : void
     {
         Mockery::close();
         parent::tearDown();
@@ -136,12 +136,12 @@ class FireflyIIITest extends TestCase
      */
     public function testGetResponseNoException()
     {
-        $this->setExpectedExceptionFromAnnotation();
         $mockProvider = Mockery::mock('StanSoft\OAuth2\Client\Provider\FireflyIII')
             ->shouldAllowMockingProtectedMethods()
             ->shouldDeferMissing()
             ->shouldReceive(['getResponse' => new Response(200, [], json_encode(['foo' => 'bar']))])
             ->getMock();
         $mockProvider->getParsedResponse(new Request('GET', '/', [], '/'));
+        $this->assertEquals(1, 1);
     }
 }
