@@ -27,8 +27,23 @@ class FireflyIII extends AbstractProvider
 	use FireflyIIIAvailableBudgetsTrait;
 	use FireflyIIIBillsTrait;
 	use FireflyIIIBudgetsTrait;
-	use FireflyIIITransactionsTrait;
+	use FireflyIIIChartsTrait;
+	use FireflyIIICategoriesTrait;
+	use FireflyIIIConfigurationTrait;
+	use FireflyIIICurrenciesTrait;
+	use FireflyIIImportTrait;
+	use FireflyIIILinksTrait;
+	use FireflyIIIPiggyBanksTrait;
+	use FireflyIIIPreferencesTrait;
+	use FireflyIIIRecurrencesTrait;
+	use FireflyIIIRulesTrait;
+	use FireflyIIIRuleGroupsTrait;
+	use FireflyIIISearchTrait;
+	use FireflyIIISummaryTrait;
 	use FireflyIIITagsTrait;
+	use FireflyIIITransactionsTrait;
+	use FireflyIIIUsersTrait;
+	use FireflyIIIDataTrait;
 
 	const METHOD_PUT = 'PUT';
 	const METHOD_DELETE = 'DELETE';

@@ -8,11 +8,26 @@ Provides Firefly-III OAuth 2.0 support as an implementation of PHP League's [OAu
 - Accounts
 - Attachments
 - Auto-complete
-- Available budgets
+- Available Budgets
 - Bills
 - Budgets
+- Charts
+- Categories
+- Configuration
+- Currencies
+- Import
+- Links
+- Piggy Banks
+- Preferences
+- Recurrences
+- Rules
+- Rule Groups
+- Search
+- Summary
 - Tags
 - Transactions
+- Users
+- Data
 
 ## Installation
 
