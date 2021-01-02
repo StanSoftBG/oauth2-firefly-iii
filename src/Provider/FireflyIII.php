@@ -3,6 +3,7 @@
 namespace StanSoft\OAuth2\Client\Provider;
 
 use Exception;
+use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Utils;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Token\AccessToken;
@@ -21,6 +22,7 @@ class FireflyIII extends AbstractProvider
 {
 	use FireflyIIIAboutTrait;
 	use FireflyIIIAccountsTrait;
+	use FireflyIIIAttachmentsTrait;
 	use FireflyIIITransactionsTrait;
 	use FireflyIIITagsTrait;
 
@@ -71,10 +73,9 @@ class FireflyIII extends AbstractProvider
     	return $this->endpoint . '/api/v1';
 	}
 
-	private function parseRequest($request) {
+	private function parseRequest($request, $isRaw = false) {
 		$response = $this->getParsedResponse($request);
-
-		if (false === is_array($response)) {
+		if (!$isRaw && false === is_array($response)) {
 			throw new Exception(
 				'Invalid response received from Authorization Server. Expected JSON.'
 			);
@@ -151,22 +152,36 @@ class FireflyIII extends AbstractProvider
 		return ['Authorization' => 'Bearer ' . $token];
 	}
 
-	/**
-	 * @param string $method
-	 * @param string $url
-	 * @param AccessToken $token
-	 * @param array $requestBodyParameters
-	 * @return array|string
-	 * @throws Exception
-	 */
-	public function executeAndParse($method, $url, $token, $requestBodyParameters = []) {
-    	$request = $this->getAuthenticatedRequest($method, $url, $token, [
-			'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']
-		]);
+	public function executeAndParse($method, $url, $token, $requestBodyParameters = [], $uploadBinaryData = null) {
+		if ($uploadBinaryData !== null) {
+			// we need to upload something
+			$request = $this->getAuthenticatedRequest($method, $url, $token, [
+				'headers' => ['Content-Type' => 'multipart/form-data']
+			]);
+			$stream = new MultipartStream([[
+				'name' => $uploadBinaryData['name'],
+				'contents' => $uploadBinaryData['content'],
+				'filename' => $uploadBinaryData['name']
+			]]);
+			try {
+				return $this->parseRequest($request->withBody($stream));
+			} catch (Exception $e) {
+				die($e->getMessage());
+			}
+		} else {
+			$request = $this->getAuthenticatedRequest($method, $url, $token, [
+				'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']
+			]);
 
-		return $this->parseRequest(
-			$request->withBody(Utils::streamFor(http_build_query($requestBodyParameters)))
-		);
+			try {
+				return $this->parseRequest(
+					$request->withBody(Utils::streamFor(http_build_query($requestBodyParameters))),
+					array_key_exists('binaryDownload', $requestBodyParameters) && $requestBodyParameters['binaryDownload'] === true
+				);
+			} catch (Exception $e) {
+				die($e->getMessage());
+			}
+		}
 	}
 	
 }

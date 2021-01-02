@@ -6,6 +6,7 @@ Provides Firefly-III OAuth 2.0 support as an implementation of PHP League's [OAu
 ## Covered APIs
 - About 
 - Accounts
+- Attachments
 - Tags
 - Transactions
 
