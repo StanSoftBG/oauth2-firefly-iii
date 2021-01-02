@@ -23,6 +23,7 @@ class FireflyIII extends AbstractProvider
 	use FireflyIIIAboutTrait;
 	use FireflyIIIAccountsTrait;
 	use FireflyIIIAttachmentsTrait;
+	use FireflyIIIAutocompleteTrait;
 	use FireflyIIITransactionsTrait;
 	use FireflyIIITagsTrait;
 
