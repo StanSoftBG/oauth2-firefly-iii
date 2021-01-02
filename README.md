@@ -9,6 +9,7 @@ Provides Firefly-III OAuth 2.0 support as an implementation of PHP League's [OAu
 - Attachments
 - Auto-complete
 - Available budgets
+- Bills
 - Tags
 - Transactions
 
